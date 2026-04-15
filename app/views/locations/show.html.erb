@@ -30,7 +30,7 @@
           <td><%= time %></td>
           <% @extended[:days].each do |day| %>
             <% entry = @extended[:data][time]&.[](day) %>
-            <td><%= entry ? "#{entry.temp}&deg;F, #{entry.description}".html_safe :  "-" %></td>
+            <td><%= entry ? entry.temp : "-" %>&deg;F, <%= entry ? entry.description :  "" %></td>
           <% end %>
         </tr>
       <% end %>
