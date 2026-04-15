@@ -2,6 +2,11 @@ require "test_helper"
 
 class LocationTest < ActiveSupport::TestCase
   setup do
+    # Not sure why this suddenly became necessary.
+    Location.delete_all
+    Forecast.delete_all
+
+    # Seeds a Location and Forecast
     @loc = Location.create(address: "Boston, MA",
                            zip_code: "02110",
                            latitude: 0.423555076e2,
