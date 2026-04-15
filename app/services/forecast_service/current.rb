@@ -2,6 +2,8 @@
 
 # Service Object to retrieve the current weather
 # for a given Location
+# I did not provide unit tests for the service objects, although that would be best practice.
+# I would need to stub out the APIs with something like minitest/mock first.
 module ForecastService
   class Current
     # Initializes the object, retrieving both the
