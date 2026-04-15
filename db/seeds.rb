@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+[ "Bend, OR", "Boston, MA", "Chicaco, IL" ].each do |city|
+  Location.find_or_create_by!(address: city)
+end

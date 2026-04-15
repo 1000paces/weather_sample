@@ -9,6 +9,10 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
+/* Some really basic styles for the table. I didn't
+ * concentrate on the look/feel of the UI
+ * given the instructions
+ */
 table {
   width: 100%;
   border-collapse: collapse;
