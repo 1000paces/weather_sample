@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
+# Service Object to retrieve the extended (5 day) forecast
+# for the given Location
 module ForecastService
   class Extended
+    # URI constant
     OPENWEATHERMAP_URI="https://api.openweathermap.org/data/2.5/forecast".freeze
 
+    # Initializes the Location and Forecast objects
     def initialize(id:)
       @location = Location.find_by(id: id)
       @forecast = @location.forecast
@@ -14,6 +18,7 @@ module ForecastService
       new(id: id).call
     end
 
+    # Instance version of call
     def call
       # Call the forecasting API and update the location's forecast
       current_forecast
@@ -24,11 +29,12 @@ module ForecastService
 
     private
 
-    # Creates a new @client object using the API key
+    # Builds a URI object from the constant
     def build_uri
       URI(OPENWEATHERMAP_URI)
     end
 
+    # Encodes the URI with lat, lon, units and appid 
     def query_uri
       uri = build_uri
       uri.query = URI.encode_www_form(lat: @location.latitude, lon: @location.longitude, units: "imperial", appid: ENV["OPENWEATHER_API_KEY"])
@@ -37,6 +43,8 @@ module ForecastService
     end
 
     # Uses the query_uri object to query the API for a specific location's forecast
+    # using Net::HTTP.get
+    # Updates the Forecast::extended field with the results
     def current_forecast
       data = JSON.parse(Net::HTTP.get(query_uri))
       @forecast.update(extended: data)

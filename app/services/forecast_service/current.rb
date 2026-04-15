@@ -1,17 +1,23 @@
 # frozen_string_literal: true
 
+# Service Object to retrieve the current weather
+# for a given Location
 module ForecastService
   class Current
+    # Initializes the object, retrieving both the
+    # Location via the id, and the Forecast via
+    # the zip_code association
     def initialize(id:)
       @location = Location.find_by(id: id)
       @forecast = @location.forecast
     end
 
-    # Helper method so the object is more portable
+    # Class version of call
     def self.call(id:)
       new(id: id).call
     end
 
+    # Instance version of call
     def call
       # Initialize a new OpenWeather Client
       client
@@ -31,6 +37,7 @@ module ForecastService
     end
 
     # Uses the @client object to query the API for a specific location
+    # and update the Forecast::current field with the retrieved JSON
     def current_weather
       data = @client.current_weather(lat: @location.latitude, lon: @location.longitude, units: "imperial")
 
