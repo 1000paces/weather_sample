@@ -34,7 +34,7 @@ module ForecastService
       URI(OPENWEATHERMAP_URI)
     end
 
-    # Encodes the URI with lat, lon, units and appid 
+    # Encodes the URI with lat, lon, units and appid
     def query_uri
       uri = build_uri
       uri.query = URI.encode_www_form(lat: @location.latitude, lon: @location.longitude, units: "imperial", appid: ENV["OPENWEATHER_API_KEY"])
