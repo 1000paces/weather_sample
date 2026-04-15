@@ -1,10 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby & Rails versions
     * Ruby 4.0.2 was used in development, but nothing outlandish was done with Ruby, so any recent version is probably fine.
     * Rails 8.1.3, but again, nothing crazy so any recent version should work.
