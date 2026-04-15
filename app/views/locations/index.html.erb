@@ -1,0 +1,14 @@
+<h1>
+  Recent Forecasts
+</h1>
+<ul>
+  <% @locations.each do |location| %>
+    <li>
+      <%= link_to location.address, location_path(location.id) %>
+    </li>
+  <% end %>
+</ul>
+<br />
+<div>
+  <%= link_to "Add Location", new_location_path %>
+</div>

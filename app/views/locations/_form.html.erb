@@ -1,0 +1,8 @@
+<%= form_with model: @location do |form| %>
+  <div>
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+  <br />
+  <%= form.submit %>
+<% end %>

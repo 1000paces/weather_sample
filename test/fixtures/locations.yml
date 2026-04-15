@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address: Boston, MA
+  zip_code: "02110"
+  latitude: 0.423555076e2
+  longitude: -0.710565364e2
+
+two:
+  address: San Franscisco, CA
+  zip_code: "94103" 
+  latitude: 0.377749295e2
+  longitude: -0.1224194155e3

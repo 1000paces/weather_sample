@@ -1,0 +1,47 @@
+<h1>Forecast for <%= @location.address %></h1>
+<% if @forecast&.from_cache == true %>
+  <h4>This data was cached less than 30 minutes ago.</h4>
+<% end %>
+<% if @location.failed? == true %>
+  <h3>WARNING! The entered location appears to be invalid. Try specifying additional detail in the address.</h3>
+<% else %>
+  <h2>Currently:</h2>
+  <ul>
+    <li>
+      Current Conditions: <%= @current.conditions %> and <%= @current.temp %>&deg;F.  Feels like <%= @current.feels_like %>&deg;F.
+    </li> 
+    <li>Today's High: <%= @current.max_temp %>&deg;F.</li>
+    <li>Tonight's Low: <%= @current.min_temp %>&deg;F.</li>
+    <li>Sunrise at <%= @sun.rise %> and Sunset at <%= @sun.set %>.</li>
+  </ul>
+  <h2>Extended Forecast:</h2>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <% @extended[:days].each do |day| %>
+          <th><%= day %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @extended[:times].each do |time| %>
+        <tr>
+          <td><%= time %></td>
+          <% @extended[:days].each do |day| %>
+            <% entry = @extended[:data][time]&.[](day) %>
+            <td><%= entry ? "#{entry.temp}&deg;F, #{entry.description}".html_safe :  "-" %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<br />
+<div>
+  <%= link_to "Home", locations_path %> |    
+  <%= link_to "Edit", edit_location_path(@location) %> 
+  <br />
+  <%= button_to "Delete", @location, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+</div>
+
