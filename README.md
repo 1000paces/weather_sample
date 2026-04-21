@@ -6,7 +6,7 @@
 
 * System dependencies
     * Only 3 gems were added to the Rails defaults: geokit-rails for Geocoding, open-weather-ruby-client for forecasting, and dotenv for secrets/API keys
-    * Normally, checking secrets in to version control is bad form, but given the circumstance, I've checked two files in, one for development and one for testing (.env.local and .env.test)
+    * API keys are **not** committed to version control. Copy `.env.example` to `.env.local` (for development) and `.env.test` (for tests), then fill in your own keys. These files are git-ignored.
     * Database is sqlite3, so no additional configuration is needed.  Not great for scaling up, but for the purposes of a demo project run locally, it's just fine.  Moving to Postgresql or MySQL with proper resources and support would be needed in production.
 
 * Configuration
@@ -14,6 +14,7 @@
     * cd to the local folder in a terminal
     * If you don't have Rails 8.x installed, run "gem install rails"
     * run "bundle install" to install the required gems for the project
+    * Copy `.env.example` to `.env.local` and fill in your Google and OpenWeather API keys
     * Run "rails db:create", "rails db:migrate" and "rails db:seed" (or just rails db:setup).  This should create the database and seed a few addresses.
     * In a terminal, run "rails server" (add -pSOME_PORT_NUMBER if you want something besides localhost:3000
     * In a browser, load "http://localhost:3000" to get started.  You can click on one of the existing locations or add your own.
